@@ -1,0 +1,52 @@
+{
+  "name": "pdf-kingdom",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Herramientas PDF gratuitas que funcionan 100 % en tu navegador.",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "npm run generate",
+    "generate": "nuxt generate && node scripts/despues-de-generar.mjs",
+    "preview": "node scripts/servidor-estatico.mjs",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "fixtures": "node scripts/generar-pdfs-prueba.ts",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:e2e": "npm run generate && playwright test",
+    "images": "node scripts/generar-imagenes.mjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@cantoo/pdf-lib": "^2.11.1",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@neslinesli93/qpdf-wasm": "^0.3.0",
+    "@nuxtjs/color-mode": "^4.0.1",
+    "@nuxtjs/i18n": "^10.6.0",
+    "@vueuse/core": "^15.0.0",
+    "@vueuse/integrations": "^15.0.0",
+    "comlink": "^4.4.2",
+    "fflate": "^0.8.3",
+    "nuxt": "^4.6.1",
+    "pdfjs-dist": "^6.4.299",
+    "sortablejs": "^1.15.7",
+    "vue": "^3.5.43",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/sortablejs": "^1.15.9",
+    "jpeg-js": "^0.4.4",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.4",
+    "vue-tsc": "^3.3.13"
+  }
+}

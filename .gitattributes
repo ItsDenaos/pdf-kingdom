@@ -1,0 +1,6 @@
+# Los archivos de prueba son binarios: git no debe cambiar sus saltos de línea.
+*.pdf binary
+*.wasm binary
+*.jpg binary
+*.jpeg binary
+*.png binary

@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+
+/* El modo oscuro se activa con la clase .dark en <html> (la pone @nuxtjs/color-mode). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+
+  /* Morado real */
+  --color-royal-50: #f6f2fd;
+  --color-royal-100: #ece3fb;
+  --color-royal-200: #dacbf7;
+  --color-royal-300: #bfa3f0;
+  --color-royal-400: #9f74e5;
+  --color-royal-500: #8350d6;
+  --color-royal-600: #6d37bd;
+  --color-royal-700: #5a2a9c;
+  --color-royal-800: #4a2480;
+  --color-royal-900: #3a1d63;
+  --color-royal-950: #22103d;
+
+  /* Dorado */
+  --color-gold-50: #fdf9ec;
+  --color-gold-100: #faefc9;
+  --color-gold-200: #f5dd8f;
+  --color-gold-300: #efc655;
+  --color-gold-400: #e9b02f;
+  --color-gold-500: #d4911a;
+  --color-gold-600: #b77013;
+  --color-gold-700: #925014;
+  --color-gold-800: #794017;
+  --color-gold-900: #673518;
+}
+
+/* Colores con significado: cambian solos entre modo claro y oscuro. */
+@theme inline {
+  --color-surface: var(--pk-surface);
+  --color-raised: var(--pk-raised);
+  --color-sunken: var(--pk-sunken);
+  --color-ink: var(--pk-ink);
+  --color-muted: var(--pk-muted);
+  --color-line: var(--pk-line);
+  --color-accent: var(--pk-accent);
+  --color-accent-hover: var(--pk-accent-hover);
+  --color-on-accent: var(--pk-on-accent);
+  --color-crown: var(--pk-crown);
+  --color-crown-ink: var(--pk-crown-ink);
+  --color-danger: var(--pk-danger);
+  --color-danger-soft: var(--pk-danger-soft);
+  --color-warning: var(--pk-warning);
+  --color-warning-soft: var(--pk-warning-soft);
+  --color-success: var(--pk-success);
+  --color-success-soft: var(--pk-success-soft);
+}
+
+:root {
+  --pk-surface: #faf7fd;
+  --pk-raised: #ffffff;
+  --pk-sunken: #f1ebfa;
+  --pk-ink: #1f1530;
+  --pk-muted: #5b5070;
+  --pk-line: #e2d9ef;
+  --pk-accent: var(--color-royal-700);
+  --pk-accent-hover: var(--color-royal-800);
+  --pk-on-accent: #ffffff;
+  --pk-crown: var(--color-gold-400);
+  --pk-crown-ink: var(--color-gold-700);
+  --pk-danger: #b42318;
+  --pk-danger-soft: #fdecea;
+  --pk-warning: #8a4b06;
+  --pk-warning-soft: #fdf3dc;
+  --pk-success: #146c43;
+  --pk-success-soft: #e5f6ed;
+  color-scheme: light;
+}
+
+.dark {
+  --pk-surface: #120a1f;
+  --pk-raised: #1c1230;
+  --pk-sunken: #0d0717;
+  --pk-ink: #f3eefb;
+  --pk-muted: #b8aecb;
+  --pk-line: #33264a;
+  --pk-accent: var(--color-royal-500);
+  --pk-accent-hover: var(--color-royal-400);
+  --pk-on-accent: #ffffff;
+  --pk-crown: var(--color-gold-300);
+  --pk-crown-ink: var(--color-gold-300);
+  --pk-danger: #ff8a80;
+  --pk-danger-soft: #3a1618;
+  --pk-warning: #f5c76b;
+  --pk-warning-soft: #33250c;
+  --pk-success: #6fdba5;
+  --pk-success-soft: #0f2c20;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--pk-crown);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Piezas reutilizables (se usan como clases normales: class="btn-primary"). */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold
+    transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0;
+}
+@utility btn-primary {
+  @apply btn bg-accent text-on-accent shadow-sm hover:bg-accent-hover;
+}
+@utility btn-lg {
+  @apply px-6 py-3.5 text-base;
+}
+@utility btn-secondary {
+  @apply btn border border-line bg-raised text-ink hover:bg-sunken;
+}
+@utility btn-ghost {
+  @apply btn text-muted hover:bg-sunken hover:text-ink;
+}
+@utility icon-btn {
+  @apply inline-flex size-9 items-center justify-center rounded-lg text-muted transition-colors
+    hover:bg-sunken hover:text-ink disabled:cursor-not-allowed disabled:opacity-40;
+}
+@utility card {
+  @apply rounded-2xl border border-line bg-raised;
+}
+@utility field-label {
+  @apply mb-1.5 block text-sm font-semibold text-ink;
+}
+@utility field-input {
+  @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-base text-ink placeholder:text-muted/70
+    focus:border-royal-500 focus:outline-none focus:ring-2 focus:ring-royal-500/30;
+}

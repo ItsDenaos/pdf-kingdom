@@ -1,0 +1,18 @@
+# Configuración de publicación en Netlify.
+# Netlify instala las dependencias, ejecuta el comando de build y publica la carpeta indicada.
+
+[build]
+  # Genera el sitio estático y, después, sitemap.xml, robots.txt y _headers
+  # (cabeceras de seguridad con la CSP; ver scripts/despues-de-generar.mjs).
+  command = "npm run generate"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "24"
+  # Los navegadores de Playwright solo hacen falta para las pruebas, no para publicar.
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+  # Con dominio propio, define NUXT_PUBLIC_SITE_URL en Netlify (Site settings → Environment variables).
+  # Si no se define, se usa la dirección que Netlify asigna al sitio.
+
+# Las cabeceras de seguridad (Content-Security-Policy, Referrer-Policy, etc.) y de caché se generan
+# en .output/public/_headers en cada build, porque la CSP incluye la huella de los scripts del HTML.

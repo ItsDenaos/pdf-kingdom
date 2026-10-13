@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pdf-kingdom-estatico",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/servidor-estatico.mjs"],
+      "port": 4173
+    },
+    {
+      "name": "pdf-kingdom-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nuxt", "dev", "--port", "3000"],
+      "port": 3000
+    }
+  ]
+}

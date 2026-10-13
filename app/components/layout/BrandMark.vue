@@ -1,0 +1,34 @@
+<script setup lang="ts">
+/** Emblema de PDF Kingdom: una hoja con la esquina doblada y una corona dorada. */
+const uid = useId()
+</script>
+
+<template>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient :id="`${uid}-sheet`" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7c45cf" />
+        <stop offset="1" stop-color="#3a1d63" />
+      </linearGradient>
+      <linearGradient :id="`${uid}-gold`" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f8e3a0" />
+        <stop offset="1" stop-color="#e2a420" />
+      </linearGradient>
+    </defs>
+    <!-- Hoja con la esquina superior derecha doblada -->
+    <path d="M7 1h15l9 9v15a6 6 0 0 1-6 6H7a6 6 0 0 1-6-6V7a6 6 0 0 1 6-6z" :fill="`url(#${uid}-sheet)`" />
+    <path d="M22 1v6a3 3 0 0 0 3 3h6z" fill="#b99af0" />
+    <!-- Corona -->
+    <path
+      d="M8.2 23.2 6.8 13.6l4.7 3.6L16 10.4l4.5 6.8 4.7-3.6-1.4 9.6z"
+      :fill="`url(#${uid}-gold)`"
+      stroke="#f8e3a0"
+      stroke-width=".6"
+      stroke-linejoin="round"
+    />
+    <rect x="8.2" y="24.4" width="15.6" height="2.4" rx="1.2" :fill="`url(#${uid}-gold)`" />
+    <circle cx="6.8" cy="13.1" r="1.5" fill="#f8e3a0" />
+    <circle cx="16" cy="9.6" r="1.7" fill="#f8e3a0" />
+    <circle cx="25.2" cy="13.1" r="1.5" fill="#f8e3a0" />
+  </svg>
+</template>
