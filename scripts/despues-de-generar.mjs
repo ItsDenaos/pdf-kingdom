@@ -7,7 +7,7 @@
  *    incrustados en el HTML, únicamente los que existen al generar (por su huella SHA-256).
  */
 import { createHash } from 'node:crypto'
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { resolveSiteUrl } from './sitio.mjs'
@@ -110,6 +110,12 @@ export function buildHeaders(csp) {
 
 function main() {
   const publicDir = fileURLToPath(new URL('../.output/public', import.meta.url))
+  if (!existsSync(publicDir)) {
+    console.error(
+      `No existe ${publicDir}. Revisa que nuxt.config.ts tenga nitro.preset = 'static' (genera el sitio en .output/public).`,
+    )
+    process.exit(1)
+  }
   const siteUrl = resolveSiteUrl()
   const routes = listPages(publicDir)
   const today = new Date().toISOString().slice(0, 10)

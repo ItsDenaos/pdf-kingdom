@@ -72,6 +72,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    // Siempre sitio estático en .output/public. Sin esto, en Netlify Nuxt elige solo el modo
+    // "netlify-static", que genera en "dist" y no aplica nuestros pasos posteriores (_headers…).
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       routes: ['/', '/privacidad'],
