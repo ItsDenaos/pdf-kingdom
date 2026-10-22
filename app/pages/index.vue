@@ -75,8 +75,9 @@ const steps = [1, 2, 3] as const
         </p>
         <h1 class="mt-5 max-w-3xl font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
           {{ t('home.title') }}
+          <!-- pb: el degradado solo pinta dentro de la caja; sin ese margen se cortaría la "g". -->
           <span
-            class="block bg-linear-to-r from-royal-600 via-royal-500 to-gold-600 bg-clip-text text-transparent dark:from-royal-300 dark:via-royal-200 dark:to-gold-300"
+            class="block bg-linear-to-r from-royal-600 via-royal-500 to-gold-600 bg-clip-text pb-[0.15em] text-transparent dark:from-royal-300 dark:via-royal-200 dark:to-gold-300"
           >
             {{ t('home.titleAccent') }}
           </span>
